@@ -8,7 +8,7 @@
 </head>
 
 <body>
-<form method="post" action=<?php echo $_SERVER['PHP_SELF']?>>
+<form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
     貸款金額:<input type="number" name="loan" value="5" required>萬元 <br>
     年利率:<input type="decimal" name="rate" value="1.8" requited>%<br>
     還款年數:<input type="number" name="year" value="1" requited>年 <br>
@@ -30,6 +30,7 @@
                     $payment = $_POST['loan'] * 10000 * ($power_term*$rate)/($power_term-1);    
                     echo "每月應還 <b>" .ceil($payment) . "</b>元";
         }else{
+            echo $_POST['loan'];
             echo "無法計算";
         }
     ?>
