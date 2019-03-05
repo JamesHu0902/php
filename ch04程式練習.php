@@ -35,8 +35,8 @@
                             <span class="input-group-text" id="basic-addon1">使用者姓名</span>
                         </div>
                         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" >
-                           <input type="text" placeholder="請輸入使用者姓名" name="name"> 
-                           <input class="btn btn-primary" type="submit" value="確認">
+                            <input type="text" placeholder="請輸入使用者姓名" name="name"> 
+                            <input class="btn btn-primary" type="submit" value="確認">
                         </form>
                     </div> 
                     <?Php
@@ -51,8 +51,8 @@
                             <span class="input-group-text" id="basic-addon1">使用者姓名</span>
                         </div>
                         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" >
-                           <input type="text" placeholder="請輸入使用者姓名" name="name2"> 
-                           <input class="btn btn-primary" type="submit" value="確認">
+                            <input type="text" placeholder="請輸入使用者姓名" name="name2"> 
+                            <input class="btn btn-primary" type="submit" value="確認">
                         </form>
                     </div>
                     <?Php echo 'title修改完成'?>
@@ -103,14 +103,14 @@
                             <span class="input-group-text" id="basic-addon1">阿拉伯數字</span>
                         </div>
                         <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" >
-                           <input type="text" placeholder="請輸入3位阿拉伯數字" name="number"> 
-                           <input class="btn btn-primary" type="submit" value="確認">
+                            <input type="text" placeholder="請輸入3位阿拉伯數字" name="number"> 
+                            <input class="btn btn-primary" type="submit" value="確認">
                         </form>
                     </div>
 
                     <?php
                         $str = $_POST['number'];
-                        
+                        // 收到的數字拆開轉換成陣列
                         $strarr = preg_split('//', $str, -1, PREG_SPLIT_NO_EMPTY);
 
                         if(isset($_POST['number']) && ($_POST['number'] > 0)){
