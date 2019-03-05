@@ -1,6 +1,6 @@
 <form action="./welcome.php" method="post">
-帳號：<input type="text" name="name"><br>
-密碼：<input type="text" name="email"><br>
+    帳號：<input type="text" name="name"><br>
+    密碼：<input type="text" name="email"><br>
 <input type="submit">
 </form>
 <form action="" method="get">

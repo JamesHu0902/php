@@ -63,21 +63,27 @@
             [1180,1145,1005,860,410,0,540,715],
             [1480,1445,1305,1160,710,295,0,355],
             [1630,1595,1455,1310,860,450,150,0]);
-        $form = $_POST['departure'];
-        $to = $_POST['destination'];
         
-        if(($_POST['class']=='商務' && $to > $from ) || ($_POST['class']=='標準' && $to < $from ))
-            $totle = $price[$form][$to]*$_POST['number'];
-        else
-            $totle = $price[$to][$form]*$_POST['number'];
+        
+        if((isset($_POST['departure']) && isset($_POST['destination']) 
+            && ($_POST['departure'] != $_POST['destination']))){
+            $from = $_POST['departure'];
+            $to = $_POST['destination'];
 
-        if($_POST['type']=='優待票')$totle=$totle*0.5;
+            if(($_POST['class']=='商務' && $to > $from ) || ($_POST['class']=='標準' && $to < $from ))
+                $totle = $price[$from][$to]*$_POST['number'];
+            else
+                $totle = $price[$to][$from]*$_POST['number'];
 
-        echo "從 <b>{$staion[$form]}</b>站 到 <b>{$staion[$to]}</b> 站 <br>
+            if($_POST['type']=='優待票')$totle=$totle*0.5;
+            echo $_POST['class'];
+            echo "從 <b>{$staion[$from]}</b>站 到 <b>{$staion[$to]}</b> 站 <br>
 
-        <b>{$_POST['class']}</b>車廂<b>{$_POST['type']}</b> <b>{$_POST['number']}</b> 張<br>
+            <b>{$_POST['class']}</b>車廂<b>{$_POST['type']}</b> <b>{$_POST['number']}</b> 張<br>
 
-        小記 <b>$totle</b> 元";
+            小記 <b>$totle</b> 元"; 
+        }
+        
     ?>
     </div>
     
