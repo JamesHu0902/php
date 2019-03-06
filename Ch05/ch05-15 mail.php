@@ -22,7 +22,7 @@
         // echo "<img src='$imgurl'>"; 
     ?>
     <div class="container bg-light">
-        <h3>PHP輪播測試</h3>
+        
         <div class="row  justify-content-center">
             <div id="carouselExampleIndicators" class="carousel slide col-6" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -51,7 +51,6 @@
                 </a>
             </div>  
         </div>
-            <h3>網頁聯絡表單測試</h3>
             <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
@@ -71,17 +70,24 @@
             </form>
         </div>
     </div>
+    <!-- <?php phpinfo() ?> -->
     <?php 
     // echo $_POST['email'];echo $_POST['name'];echo $_POST['number'];
         if((isset($_POST['email']) && isset($_POST['name']) && isset($_POST['number']))){
             $to = "james780902@gmail.com";
             $subject = "Test mail";
-            $message = "name:{$_POST['name']},number:{$_POST['number']}";
+            $message = "name:{$_POST['name']}<br>number:{$_POST['number']}";
             $from = htmlspecialchars($_POST['email']);
             $headers = "From: $from";
+<<<<<<< HEAD:ch05-15 mail.php
             $para = "Content-Type:text/html;charset=utf-8;";
 
             if(mail("james780902@gmail.com", $_REQUEST['name'], $_REQUEST['number'], $headers ,$para))
+=======
+            echo $message."<br>".$headers;
+            
+            if(mail($to, $subject, $message, $headers))
+>>>>>>> 89fbfd98cf0aefb98452f91fc023bfe8b19fceb8:Ch05/ch05-15 mail.php
                 echo "信件已經發送成功。";//寄信成功就會顯示的提示訊息
                 else
                 echo "信件發送失敗！";//寄信失敗顯示的錯誤訊息
