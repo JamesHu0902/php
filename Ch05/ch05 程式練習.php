@@ -46,6 +46,7 @@
                 </div>
                 <div class="tab-pane fade" id="list-5" role="tabpanel" aria-labelledby="list-5-list">
                 <h3>網頁聯絡表單</h3>
+                <?Php include 'ch05-15 mail.php' ?>
                 </div>
             </div>
         </div>

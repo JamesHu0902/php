@@ -22,7 +22,7 @@
         // echo "<img src='$imgurl'>"; 
     ?>
     <div class="container bg-light">
-        <h3>PHP輪播測試</h3>
+        
         <div class="row  justify-content-center">
             <div id="carouselExampleIndicators" class="carousel slide col-6" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -51,7 +51,6 @@
                 </a>
             </div>  
         </div>
-            <h3>網頁聯絡表單測試</h3>
             <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
