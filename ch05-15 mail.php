@@ -79,8 +79,9 @@
             $message = "name:{$_POST['name']},number:{$_POST['number']}";
             $from = htmlspecialchars($_POST['email']);
             $headers = "From: $from";
+            $para = "Content-Type:text/html;charset=utf-8;";
 
-            if(mail($to, $subject, $message, $headers))
+            if(mail("james780902@gmail.com", $_REQUEST['name'], $_REQUEST['number'], $headers ,$para))
                 echo "信件已經發送成功。";//寄信成功就會顯示的提示訊息
                 else
                 echo "信件發送失敗！";//寄信失敗顯示的錯誤訊息
