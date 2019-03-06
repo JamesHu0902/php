@@ -71,15 +71,17 @@
             </form>
         </div>
     </div>
+    <!-- <?php phpinfo() ?> -->
     <?php 
     // echo $_POST['email'];echo $_POST['name'];echo $_POST['number'];
         if((isset($_POST['email']) && isset($_POST['name']) && isset($_POST['number']))){
             $to = "james780902@gmail.com";
             $subject = "Test mail";
-            $message = "name:{$_POST['name']},number:{$_POST['number']}";
+            $message = "name:{$_POST['name']}<br>number:{$_POST['number']}";
             $from = htmlspecialchars($_POST['email']);
             $headers = "From: $from";
-
+            echo $message."<br>".$headers;
+            
             if(mail($to, $subject, $message, $headers))
                 echo "信件已經發送成功。";//寄信成功就會顯示的提示訊息
                 else
