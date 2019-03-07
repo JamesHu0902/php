@@ -33,10 +33,11 @@
         session_start();
 
         $user = ['admin'=>'12345','james'=>'780902'];
-        $name = $_POST['Uname'];
-        $password = $_POST['Password'];
+        
         $errmsg = "帳號密碼錯誤";
         if( isset($_POST['Uname']) && isset($_POST['Password'])){
+            $name = $_POST['Uname'];
+            $password = $_POST['Password'];
             if( $user[$name] == $password ){
                 $_SESSION['name'] = $name;
                 $_SESSION['setCounter'] = TRUE;
