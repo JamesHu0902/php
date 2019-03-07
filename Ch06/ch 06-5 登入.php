@@ -31,7 +31,7 @@
     
     <?Php
         session_start();
-
+        unset($_SESSION['name']);
         $user = ['admin'=>'12345','james'=>'780902'];
         
         $errmsg = "帳號密碼錯誤";
@@ -42,9 +42,9 @@
                 $_SESSION['name'] = $name;
                 $_SESSION['setCounter'] = TRUE;
                 header('Location: ch 06-5-2 次數計算.php');
+                session_id();
                 exit();
             }else echo $errmsg;
-            
             
         }
     ?>
