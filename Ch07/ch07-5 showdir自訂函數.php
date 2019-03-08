@@ -32,38 +32,39 @@
         $html = '<tr><td colspan="2" rowspan="1" class="silver">';
         
         if($_SESSION['cwd'] != WORK_ROOT){
-            $html .= <<< END_OF_HTML
+            $html .= <<< END_of_HTML
                 <a href="$myUri?id=up&op=cd">回上層目錄</a>
                 <a href="$myUri?id=root&op=cd">回網站根目錄</a>
-END_OF_HTML;
+END_of_HTML;
         }
 
-        $html .= '<a href="'.$uploadphp.'">上傳檔案</a></td></tr>';
+        $html .= '<br><a href="'.$uploadphp.'">上傳檔案</a></td></tr>';
         // 輸出子目錄列表
         if(!empty($_SESSION['dirs'])){
             foreach($_SESSION['dirs'] as $key=>$dir){
-                $dir = iconv("big5","UTF-8",$dir);
-                $html .=<<<  END_OF_HTML
+                $dir = iconv("BIG5","UTF-8",$dir);
+                $html .=<<<  END_of_HTML
                     <tr>
                         <td class="silver">
                             <a href="$myUri?id=$key&op=cd">$dir</a>
                         </td>
                         <td class="silver">
+                            <a href="$myUri?type=d&id=$key&op=del">刪除</a>
                             <a href="$renphp?type=d&id=$key">更名</a>
                         </td>
                     </tr>
-END_OF_HTML;
+END_of_HTML;
             }
         }
         // 輸出檔案列表
         if(!empty($_SESSION['files'])){
-            foreach($_SESSION['files'] as $key=>$files){
-                $fname = iconv("big5","UTF-8",$files);
+            foreach($_SESSION['files'] as $key=>$file){
+                $fname = iconv("big5","UTF-8",$file);
                 $file = urlencode($file);  //中文 URL 需編碼處理
-                $html .= <<< END_OF_HTML
+                $html .= <<< END_of_HTML
                     <tr>
                         <td>
-                            <a href="$cwdUri">$fname</a>
+                            <a href="$cwdUri/$file">$fname</a>
                         </td>
                         <td>
                             <a href="$myUri?type=f&id=$key&op=del">刪除</a>
@@ -71,7 +72,7 @@ END_OF_HTML;
                             <a href="$renphp?type=f&id=$key">更名</a>
                         </td>
                     </tr>
-END_OF_HTML;
+END_of_HTML;
             }
         }
         return $html;

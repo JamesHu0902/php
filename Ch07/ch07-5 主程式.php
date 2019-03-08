@@ -8,9 +8,9 @@
     $msg = '';  //存放信息
 
     // 若目前目錄未設定，則設定為網站根目錄
-    if(! isset($_SERVER['cwd'])) $_SERVER['cwd'] = WORK_ROOT;
+    if(! isset($_SESSION['cwd'])) $_SESSION['cwd'] = WORK_ROOT;
     // 切換到目前目錄
-    chdir($_SERVER['cwd']);
+    chdir($_SESSION['cwd']);
 
 // 判斷使用者執行的操作開始
     // 判斷op是否存在
@@ -23,28 +23,40 @@
                     chdir(WORK_ROOT);
                 }elseif($id=='up'){  //切換到上一層目錄
                     chdir($_SESSION['cwd'].'/..');
-                }elseif(isset($_SESSION['dirs']['id'])){
+                }elseif(isset($_SESSION['dirs'][$id])){
                     // 切換到id參數指定路徑
                     chdir($_SESSION['cwd'].'/'.$_SESSION['dirs'][$id]);
                 }
                 // 重新讀取目前目錄 getcwd() 回傳
                 $_SESSION['cwd'] = str_replace('\\','/',getcwd());
+                // 如果目前目錄不在根目錄內，強迫回到根目錄
                 if( substr($_SESSION['cwd'],0,strlen(WORK_ROOT)) != WORK_ROOT){
                     chdir(WORK_ROOT);
                     $_SESSION['cwd'] = getcwd();
                 }
-            break;
+                break;
             // 刪除目錄或檔案
             case 'del':
-                if($_GET['type']=='d') $type = 'dirs';
-                else $type = 'files';
-
-                if(isset($_SESSION[$type][$id])){
-                    // 讀取要刪除的檔案或目錄
-                    $delName = $_SESSION[$type][$id];
-                    unlink($delName);
-                    // 設定信息
-                    $msg = "刪除".iconv('Big5','UTF-8',$delName);
+                if($_GET['type']=='d') {
+                    $type = 'dirs';
+                    if(isset($_SESSION[$type][$id])){
+                        // 讀取要刪除的目錄
+                        $delName = $_SESSION[$type][$id];
+                        // if(rmdir($delName)){
+                        //     // 設定信息
+                        //     $msg = "刪除".iconv('Big5','UTF-8',$delName)."資料夾";
+                        // }
+                        include 'ch07-5 刪除資料夾函數.php';
+                    }
+                }else {
+                    $type = 'files';
+                    if(isset($_SESSION[$type][$id])){
+                        // 讀取要刪除的檔案
+                        $delName = $_SESSION[$type][$id];
+                        unlink($delName);
+                        // 設定信息
+                        $msg = "刪除".iconv('Big5','UTF-8',$delName);
+                    }
                 }
                 break;
             // 複製檔案
@@ -83,22 +95,22 @@
     <title>網站伺服器檔案總管</title>
 </head>
 <body>
-    <p><?Php echo $msg; ?></p>
     <table border="3" cellspacing="3" cellpadding="3">
         <tr>
             <td colspan="2" rowspan="1" class="silver header">
                 目前目錄 :<?Php echo iconv('Big5','UTF-8',$_SESSION['cwd']) ?>
             </td>
         </tr>
+        <?Php include 'ch07-5 showdir自訂函數.php' ?>
         <?Php echo showdir() ;?>
     </table>
+    <p><?Php echo $msg; ?></p>
 </body>
 </html>
 
-<?Php include 'ch07-5 showdir自訂函數.php' ?>
 <style>
     .silver{
-        color : wite;
+        color : white;
         background : silver;
     }
     .header{
