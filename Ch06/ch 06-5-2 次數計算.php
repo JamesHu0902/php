@@ -17,8 +17,6 @@
         }
         // 避免重新整理刷次數
         $_SESSION['setCounter'] = FALSE ;
-        //重新整理後或是關閉頁面就無法再進入該頁面
-        
     }else {
         header('Location: ch 06-5 登入.php');
         exit();
