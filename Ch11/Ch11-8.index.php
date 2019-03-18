@@ -33,6 +33,7 @@ $xajax->processRequest(); //處理非同步
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="Ch11-8.css" >
+    <?php $xajax->printJavascript();?>
     <title>Document</title>
 </head>
 <body>
@@ -89,7 +90,7 @@ $xajax->processRequest(); //處理非同步
         $response = new xajaxResponse();
         if(empty($day))return $response;
         // 呼叫 getMemoHtml() 取得要顯示的資料
-        return $response->assign($day,'innHTML',getMemoHtml($day));
+        return $response->assign($day,'innerHTML',getMemoHtml($day));
     }
     // 傳回某日備忘錄的 HTML 相關內容的函數
     function getMemoHtml($day){
@@ -103,11 +104,6 @@ $xajax->processRequest(); //處理非同步
             // 輸出備忘錄內容
             $html .= htmlspecialchars($row['memo'])."\n&nbsp;";
             // 輸出刪除連結
-            // $html .= '<a href="#" onclick="
-            //         $(\'#op\').value=\'del\';
-            //         $(\'#id\').value='.$row['id'].';'.
-            //         $submit->getscript().
-            //         ';return false;">刪除</a>';
             $html .= '<a href="#" onclick="
                     document.getElementById(\'op\').value=\'del\';
                     document.getElementById(\'id\').value='.$row['id'].';'.
@@ -130,8 +126,7 @@ $xajax->processRequest(); //處理非同步
     }
 ?>
 </table>
-
-<div class="left" id="inputform" style="visibility:hidden;margin:0 20px;">
+<div class="left" id="inputform" style="visibility:hidden;margin:10px 20px;">
     <form id="forml">
         <input type="hidden" readonly name="op" id="op">
         <input type="hidden" readonly name="id" id="id">
@@ -141,6 +136,7 @@ $xajax->processRequest(); //處理非同步
         </button>
     </form>
 </div>
+
 </body>
 </html>
 

@@ -40,8 +40,9 @@ function submit($form){
         break;
     }
 
+    $response->call('xajax_load', $form['mdate']);
     $response->alert($msg);
-    $response->call('xajax_load',$form['mdate'],);
-    return $response->assign('inputform','style:visibility','hidden');
+    return $response->assign('inputform',
+    'style.visibility','hidden');
 }
 ?>
