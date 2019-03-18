@@ -1,0 +1,17 @@
+#allmsg{
+    width: 480px;
+    overflow: auto;
+    border: 2px solid pink;
+}
+#userlist{
+    width: 120px;
+    overflow: auto;
+    border: 2px solid pink;
+}
+.logo{
+    margin: 30px auto;
+    font-size: 3em;
+    text-align: center;
+    width: 600px;
+    border: 15px solid pink;
+}
