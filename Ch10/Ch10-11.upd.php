@@ -34,7 +34,7 @@ switch ($_GET['op']) {
         $msg = "新增成功";
         break;
     // 更新
-        case 'upd':
+    case 'upd':
         if(empty($_GET['memo']))goback();
         $st = $db->prepare('update mymemo set memo = ? where id = ?;');
         $st->bindValue(1,$_GET['memo'],PDO::PARAM_STR);

@@ -30,7 +30,7 @@
                     $payment = $_POST['loan'] * 10000 * ($power_term*$rate)/($power_term-1);    
                     echo "每月應還 <b>" .ceil($payment) . "</b>元";
         }else{
-            echo $_POST['loan'];
+            // echo $_POST['loan'];
             echo "無法計算";
         }
     ?>

@@ -1,5 +1,5 @@
 <?php
- // 若表單送回 num1 & num2 的內容
+// 若表單送回 num1 & num2 的內容
 if (!empty($_POST['num1']) && !empty($_POST['num2'])) {
     echo $_POST['num1'] + $_POST['num2']; //計算相加
     exit(); //完成後退出 不再重刷頁面
