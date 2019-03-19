@@ -23,28 +23,23 @@ $xajax->register(XAJAX_FUNCTION,'read');
 $xajax->register(XAJAX_FUNCTION,'bye');
 $xajax->processRequest();
 
-// 新增訊息治療天黨的函數
+// 新增訊息至聊天檔的函數，傳回值存於陣列的索引值
 function addMsg($msg){
     // 檢查是否有聊天檔
-    global $indexLast;
     if(is_file(CHAT_FILE)){
         $msgEntry = unserialize(file_get_contents(CHAT_FILE));
-        $indexLast++;
     }else{
-        // $msgEntry[0] = ENTRY_MAX; //代表最後一筆資料的位置的變數
-        $msgEntry[0] = $msg; //設到最後一筆
-        $indexLast = 1;
+        $msgEntry[0] = ENTRY_MAX; //代表最後一筆資料的位置的變數
     }
 
-    // $indexLast = $msgEntry[0]; //保留最後一筆數值，以便稍後傳回
+    $indexLast = $msgEntry[0]; //保留最後一筆數值，以便稍後傳回
     
-    // if(++$msgEntry[0] > ENTRY_MAX){
-    if($indexLast > ENTRY_MAX){
-        $indexLast = 1;  //代表最後一筆資料位置變數 +1
+    if(++$msgEntry[0] > ENTRY_MAX){
+        $msgEntry[0] = 1;  //代表最後一筆資料位置變數 +1
         // 若超過訊息上限則設為 1
     }
 
-    $msgEntry[$indexLast-1] = $msg;
+    $msgEntry[$msgEntry[0]] = $msg;
     file_put_contents(CHAT_FILE,serialize($msgEntry),LOCK_EX);
     return $indexLast; //傳回新訊息所在的索引
     //只有新進入 會用到此傳回值
@@ -92,7 +87,7 @@ function read(){
     $users = unserialize(file_get_contents(USER_LIST)); //讀取名單
     $msgEntry = unserialize(file_get_contents(CHAT_FILE)); //讀取訊息
     
-    // $indexLast = $msgEntry[0];
+    $indexLast = $msgEntry[0];
 
     // 比較用戶端上次讀到的訊息索引，與目前檔案紀錄最後一筆訊息的索引
     // 兩者相同表示沒有新訊息要傳送給用戶端  不同才需要傳新訊息給用戶端\

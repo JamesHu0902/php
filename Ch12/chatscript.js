@@ -2,8 +2,8 @@ var readTimer; //定時器
 
 function starRead(){
     xajax_read();
+    readTimer = setTimeout('starRead()',3000);
 }
-readTimer = setTimeout('starRead()',3000);
 
 // 檢查 是否支援HTML 5 input color 屬性
 function check_input_color(){
