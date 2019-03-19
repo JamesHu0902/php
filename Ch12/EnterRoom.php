@@ -9,7 +9,8 @@ if(is_file(USER_LIST)){ //檢查聊天名單檔是否存在
     $users = unserialize(file_get_contents(USER_LIST));
 }
 $msg_users = "沒有人";
-if(count($users) > 0) $msg_users = "有".count($users)."人";
+if(count($users) > 1) $msg_users = "有".count($users)."人";
+else $msg_users = "沒有人";
 
 $xajax->configure('javascript URI','../Xajax-master');
 
@@ -23,10 +24,14 @@ function checkname($form1){
     $response = new xajaxResponse();
     $username = $form1['username'];
 
+    // if(trim($username)){
+    //     $response->assign('msg','innerHTML','不可有空白字元');
+    //     return $response;
+    // }
     $username = trim($username); //去除空白字元
     // 檢查是否為空白
     if($username == ''){  
-        $response>assign('msg','innHTML','您的暱稱不合法');
+        $response->assign('msg','innerHTML','您的暱稱不合法');
         return $response;
     }
 
@@ -37,6 +42,7 @@ function checkname($form1){
         return $response;
     }elseif(array_key_exists(strtolower($username),$users)){
         $response->assign('msg','innerHTML','已有人使用相同暱稱，請更換暱稱! ');
+        return $response;
     }
 
     $users[strtolower($username)] = $username;  //以小寫名稱當作索引
@@ -62,12 +68,16 @@ function checkname($form1){
     <title>Document</title>
 </head>
 <body>
-    <p class="logo">Welcom ! <br>歡迎來到 PHP 聊天室</p>
-    <p>目前<?php echo $msg_users ?>上線</p>
-    <form id="form1" name="form1" action="<?php $request->pritscript()?>;return false">
-        請輸入暱稱 : <input type="text" name="username" id="username">
-        <input type="submit" value="進入聊天室">
-    </form>
-    <span id='msg' class="sys_msg"></span>
+    <div class="all">
+        <p class="logo">Welcom ! <br>歡迎來到 PHP 聊天室</p>
+        <p>目前<?php echo $msg_users ?>上線</p>
+        <form id="form1" name="form1" 
+        onsubmit='<?php $request->printscript()?>;return false;'>
+            請輸入暱稱 : <input type="text" name="username" id="username">
+            <input type="submit" value="進入聊天室">
+        </form>
+        <span id='msg' class="sys_msg"></span>
+
+    </div>
 </body>
 </html>

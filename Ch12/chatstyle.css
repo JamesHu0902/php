@@ -1,12 +1,29 @@
+.all{
+    background-color: silver;
+}
+#box{
+    width: 100%;
+    height: 300px;
+    /* border: 2px solid pink; */
+}
 #allmsg{
-    width: 480px;
+    width: 70%;
+    height: 300px;
+    margin-left: 20px;
+    border-collapse:collapse;
     overflow: auto;
-    border: 2px solid pink;
+    border: 2px solid black;
 }
 #userlist{
-    width: 120px;
+    margin-left: 20px;
+    width: 20%;
+    height: 300px;
+    border-collapse:collapse;
     overflow: auto;
-    border: 2px solid pink;
+    border: 2px solid #020068;
+}
+.windows{
+    float: left;
 }
 .logo{
     margin: 30px auto;
