@@ -49,7 +49,7 @@ function addMsg($msg){
 function send($aFormValues){
     // 由表單陣列取得使用者輸入的訊息以及樣式
     $usermsg = htmlspecialchars($aFormValues['usermsg']);
-    $colorselect = $aFormValues('colorselect');
+    $colorselect = $aFormValues['colorselect'];
     // 組合訊息字串，在字串最後加上<br>
     $str = sprintf('[%s]<span class="nick">%s</span>
                     :&nbsp<span class="usr_msg" style="color:%s"> %s</span><br>'
@@ -67,10 +67,10 @@ function changface($str){
     // 表情符號陣列
     $symbols = [':)',':(',":D",":cry"];
     // 表情圖檔陣列
-    $tags = ['<i class="far fa-smile"></i>',
-            '<i class="far fa-frown"></i>',
-            '<i class="far fa-grin-squint"></i>',
-            '<i class="far fa-sad-cry"></i>'];
+    $tags = ['<i class="far fa-smile" style="font-size:30px;"></i>',
+            '<i class="far fa-frown" style="font-size:30px;"></i>',
+            '<i class="far fa-grin-squint" style="font-size:30px;"></i>',
+            '<i class="far fa-sad-cry" style="font-size:30px;"></i>'];
     // 將 $str 中出現的 symbols 陣列元素換成對應的 tag
     return str_replace($symbols,$tags,$str);
 }
@@ -158,7 +158,8 @@ function bye(){
         <?php $xajax->printJavascript(); ?>
         <title>PHP聊天室</title>
     </head>
-    <body onload="starRead();check_input_color();" onunload="xajax_bye();">
+    <body onload="starRead();check_input_color();" 
+    onunload="xajax_bye();">
         <p class="logo">PHP 聊天室</p>
         <div id='box'>
             <div id="allmsg" class="windows"></div>
@@ -181,7 +182,7 @@ function bye(){
         <br>
         <button type="button" onclick="xajax_bye();">離開</button><br>
         <input type="checkbox" name="noscroll" id="noscroll">暫停捲動
-            <span id="bgcolor">&nbsp ;更換背景顏色 :
+            <span id="bgcolor">&nbsp&nbsp&nbsp 更換背景顏色 :
                 <input type="color" id="bgcolorselect">
             </span> 
 

@@ -10,12 +10,13 @@ function check_input_color(){
     var i = document.getElementById('bgcolorselect');
     // 有支援 HTML5
     if(i.type == "color"){
-        i.onchange = function(){ //當更換顏色開關改變時
+        i.onchange = function() { //當更換顏色開關改變時
             document.body.style.background = i.Value;  //改變背景色
+            // document.getElementById('box').style.background = i.Value;  //改變背景色
         }
     }else{
     // 不支援 HTML5
-        var span = document.getElementById('bgcolorselect');
+        var span = document.getElementById('bgcolor');
         span.parentNode.removeChild(span); //移除 span
     }
 }
